@@ -1,0 +1,316 @@
+import random
+myAction = ''
+sphinxLose = False
+guess = False
+score = 0
+s0 = False
+s1 = False
+s2 = False
+s3 = False
+back = False
+
+GME = 'you hear a roaring in the distance. \nyou look down to check the action you typed.\n it\'s too late now, the grammar monster has arrived.\nthe end.'
+name = input('what is your name?\n')
+
+print('welcome to the game\nyour actions will control the pace and direction of the story\nto win, make all the right choices\n'
+      'please note, spelling is an important skill. failure to correctly spell will lead to ones demise'
+      'at the hands of the grammar monster'
+      '\nnow, would you like to play?\n'
+      '-yes\n-no\n')
+myAction = input()
+if myAction == 'yes': #game start
+    game = True
+    while game == True:
+        print('let us begin')
+        print('-' * 50)
+        myAction = input('you find yourself in front of a large tower\n'
+              '-enter\n-turn around\n')
+        if myAction == 'enter': #tower route
+            print('you enter the tower')
+            myAction = input('beautiful white walls surround you, white furniture, white lights.\n'
+                  'a stair case beckons you\n'
+                  '-climb the stairs\n-ignore the beckoning\n')
+            if myAction == 'ignore the beckoning':
+                print('you change your mind, towers aren\'t all that fun.\n'
+                      'you turn to exit, but the door behind you is locked.\n'
+                      'you turn back around and the stairs are gone too.\n'
+                      'you reason you\'re next.\n'
+                      'the end')
+                myAction = input('play again?\n-yes\n-no\n')
+                if myAction == 'yes':
+                    pass
+                elif myAction == 'no':
+                    print(f'thanks for trying! your score was {score}')
+                    break
+            if myAction =='climb the stairs':
+                print('the stairs seem never-ending each step getting more and more difficult to climb.\nsuddenly in front of you the steps vanish, with a floating parchment\n'
+                      'the parchment reads a riddle. it seems you may have to answer.\n'
+                      '"what should walk on four legs when the sun rises,\ntwo at the sun\'s peak,\n and three in the absence of light?')
+                sphinx = True
+                while sphinx == True:
+                    print('-' * 50)
+                    myAction = input('will it be a\n-frog\n-dog\n-hog\n-human\n-log\n')
+                    if myAction == 'human':
+                        print('clearly someone well versed in egyptian riddles. you would\'ve fared well.\n')
+                        break
+                    elif myAction == 'frog':
+                        print('i suppose they do grow legs, but i think they start with 0\ntry again\n')
+                        sphinxLose = True
+                    elif myAction == 'dog':
+                        print('i think those usually stick to four legs.\ntry again\n')
+                        sphinxLose = True
+                    elif myAction == 'hog':
+                        print('do those ever really have less than four legs?\ntry again\n')
+                        sphinxLose = True
+                    elif myAction == 'log':
+                        print('now i wasn\'t aware those ever had legs\ntry again\n')
+                        sphinxLose = True
+                    else:
+                        print('you are under the protection of the sphinx. the grammar monster cannot find you here\n try again\n')
+                        sphinxLose = True
+
+                print('you\'ve escaped the sphinx\'s riddle.')
+                if sphinxLose == False:
+                    score += 1
+                    print('and on your first try too! amazing!')
+                myAction = input('the stairs reappear in front of you.\nyou may continue your climb.\n-continue on\n-turn back\n')
+                if myAction == 'continue on':
+                    print('you continue to climb the stairs')
+                    print('you reach the very top of the tower and find that there is a door with a keypad.\nit seems it only requires one number.')
+                    x = random.randint(1, 9)
+                    numberGuess = True
+                    while numberGuess == True:
+                        print('-' * 50)
+                        myAction = input('guess the number! 1-9\n')
+                        if int(myAction) == x:
+                            print('amazing! you did it!')
+                            break
+                        elif int(myAction) > x:
+                            print('your intuition is is telling you that this is a little high.')
+                            guess = True
+                        elif int(myAction) < x:
+                            print('for some reason you get the feeling this is a little low.')
+                            guess = True
+                        else:
+                            print('the grammar monster prefers not to be bothered by guessing games.')
+                            guess = True
+                    if guess == False and sphinx == False:
+                        print('first time again! you\'re on a roll')
+                        score += 1
+                    elif guess == False and sphinx == True:
+                        print('first try! nicely done!')
+                    else:
+                        pass
+                    myAction = input('will you\n-go inside\n-close the door again\n')
+                    if myAction == 'close the door again':
+                        print('you close the door, and it locks. this time it is a 45432498^10 digit code.\n'
+                              'safe to say this may take a while.\n'
+                              'the end')
+                        myAction = input('play again?\n-yes\n-no\n')
+                        if myAction == 'yes':
+                            pass
+                        elif myAction == 'no':
+                            print(f'thanks for trying! your score was {score}')
+                            break
+                    elif myAction == 'go inside':
+                        print('you enter the final room of the tower and find a cloaked man before you.\nyou know not what he wants\n'
+                              'he reaches his hand out, a closed fist.\n'
+                              '"rock... paper... scissors...')
+
+                        finalGame = True
+                        playerScore = 0
+                        computerScore = 0
+                        while finalGame == True:
+                            print('-' * 50)
+                            if playerScore == 2:
+                                break
+                            if computerScore == 2:
+                                break
+                            choice = ["rock", "paper", "scissors"]
+                            computer = choice[random.randint(0, 2)]
+                            print(f'you: {playerScore}\nhim: {computerScore}\nbest out of three\nmake your move, {name}')
+                            myAction = input()
+                            print(f'he chose {computer}')
+                            if myAction == computer:
+                                print('a tie. the pressure builds.')
+                            elif myAction == 'rock':
+                                if computer == 'paper':
+                                    computerScore += 1
+                                    print('paper beats rock')
+                                if computer == 'scissors':
+                                    playerScore += 1
+                                    print('smashed to bits.')
+                            elif myAction == 'paper':
+                                if computer == 'rock':
+                                    playerScore += 1
+                                    print('the paper consumes the rock')
+                                elif computer == 'scissors':
+                                    computerScore += 1
+                                    print('you obliterate the opponents scissors')
+                            elif myAction == 'scissors':
+                                if computer == 'rock':
+                                    computerScore += 1
+                                    print('hope you weren\'t planning on arts and crafts later.')
+                                elif computer == 'paper':
+                                    playerScore += 1
+                                    print('snip!')
+                        if computerScore == 2:
+                            print('you failed. you will never uncover the mystery of the tower.\n'
+                                  'the end.')
+                            myAction = input('play again?\n-yes\n-no\n')
+                            if myAction == 'yes':
+                                pass
+                            elif myAction == 'no':
+                                print(f'thanks for trying! your score was {score}')
+                                break
+                        elif playerScore == 2:
+                            if computerScore == 0:
+                                print('he never stood a chance.')
+                                score += 1
+                            print(f'you have defeated the enemy. it is time to unveil their identity.\nwow...its...\ndark {name}\n'
+                                  f'how original.')
+                            print('you find yourself staring out the window of the tower, donning the enemies cloak.\n'
+                                  'and so it continues.')
+                            print(f'your score was {score}')
+                            if score == 3:
+                                print('you got the top score for the tower route!')
+                            if score == 0:
+                                print('well, dont feel too bad, you can always play again.')
+                        print('-' * 50)
+                        print('thank you for playing, have a great summer! :) - isaac and nahom')
+                        myAction = input('play again?\n-yes\n-no\n')
+                        if myAction == 'yes':
+                            score = 0
+                            pass
+                        elif myAction == 'no':
+                            print('thanks for playing!')
+                            break
+                    else:
+                        print(GME)
+                        myAction = input('play again?\n-yes\n-no\n')
+                        if myAction == 'yes':
+                            pass
+                        elif myAction == 'no':
+                            print(f'thanks for trying! your score was {score}')
+                            break
+                elif myAction == 'turn back':
+                    print('you turn around to take a step, and you find that the stairs behind you have disapeared.\nyou plummet to your death\nthe end')
+                    myAction = input('play again?\n-yes\n-no\n')
+                    if myAction == 'yes':
+                        pass
+                    elif myAction == 'no':
+                        print(f'thanks for trying! your score was {score}')
+                        break
+                else:
+                    print(GME)
+                    myAction = input('play again?\n-yes\n-no\n')
+                    if myAction == 'yes':
+                        pass
+                    elif myAction == 'no':
+                        print(f'thanks for trying! your score was {score}')
+                        break
+            else:
+                print(GME)
+                myAction = input('play again?\n-yes\n-no\n')
+                if myAction == 'yes':
+                    pass
+                elif myAction == 'no':
+                    print(f'thanks for trying! your score was {score}')
+                    break
+        elif myAction == 'turn around':
+            myAction = input('towers are overrated, you turn around.\nyou find yourself lost in the woods\nwhat do you do?\n-call for help\n-travel deeper\n')
+            if myAction == 'travel deeper':
+                print('you traverse deeper into the woods. soon, night falls and you have not found any help.\n'
+                      'there are three paths before you. this seems familliar.')
+                lostWoods = True
+                while lostWoods == True:
+                    myAction = input('the music plays loudest from the right. will you go\n-left\n-right\n-forward\n')
+                    if myAction == 'right':
+                        myAction = input('correct. the music is loud from the left. will you go\n-left\n-right\n-forward\n')
+                        if myAction == 'left':
+                            myAction = input('correct. the music plays loudest to in front. will you go\n-left\n-right\n-forward\n')
+                            if myAction == 'forward':
+                                myAction = input('correct. the music seems to reach your right ear last. will you go \n-left\n-right\n-forward\n')
+                                if myAction == 'left':
+                                    print('correct! you have made it through the confusing woods.')
+                                    if back == False:
+                                        score += 1
+                                    break
+                                else:
+                                    print('to the start.')
+                                    back = True
+                            else:
+                                print('to the start')
+                                back = True
+                        else:
+                            print('to the start')
+                            back = True
+                    else:
+                        print('to the start')
+                        back = True
+
+                print('you stumble out of the woods and find a sign.\n"guess the four letter word for riches"')
+                hangMan = True
+                currentGuess = ['x', 'x', 'x', 'x']
+                while hangMan == True:
+                    word = 'sign'
+                    print(f'{currentGuess},what is your guess?')
+                    myAction = str(input())
+                    if myAction[0] == 's':
+                        currentGuess[0] = 's'
+                        s0 = True
+                    if myAction[1] == 'i':
+                        currentGuess[1] = 'i'
+                        s1 = True
+                    if myAction[2] == 'g':
+                        currentGuess[2] = 'g'
+                        s2 = True
+                    if myAction[3] == 'n':
+                        currentGuess[3] = 'n'
+                        s3 = True
+                    if s0 == True and s1 == True and s2 == True and s3 == True:
+                        print('you\'ve solved the puzzle! the word is sign!')
+                        break
+                print('maybe it was foolish to believe a sign could provide you with wishes.\n'
+                      'but at least you escaped from the woods\n'
+                      f'your score was {score}')
+                if score == 1:
+                    print('which was the max score!')
+                print('thank you for playing, have a great summer!')
+                score = 0
+                myAction = input('play again?\n-yes\n-no\n')
+                if myAction == 'yes':
+                    pass
+                elif myAction == 'no':
+                    print(f'thanks for trying! your score was {score}')
+                    break
+
+
+            elif myAction == 'call for help':
+                print('you cried for help, and nobody came.\nyou hear a rustling in the woods\nthe end.')
+
+            else:
+                print(GME)
+                myAction = input('play again?\n-yes\n-no\n')
+                if myAction == 'yes':
+                    pass
+                elif myAction == 'no':
+                    print(f'thanks for trying! your score was {score}')
+                    break
+        else:
+            print(GME)
+            myAction = input('play again?\n-yes\n-no\n')
+            if myAction == 'yes':
+                pass
+            elif myAction == 'no':
+                print('thanks for playing!')
+                break
+
+
+elif myAction == 'no':
+    print('well that\'s just too bad')
+else:
+    print('bad start. you lose.')
+print('-'*50)
+print('thank you for playing')
+print('-'*50)
